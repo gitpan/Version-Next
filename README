@@ -1,0 +1,67 @@
+NAME
+    Version::Next - increment module version numbers simply and correctly
+
+VERSION
+    version 0.001
+
+SYNOPSIS
+       use Version::Next;
+ 
+       my $new_version = next_version( $old_version );
+
+DESCRIPTION
+    This module provides a simple, correct way to increment a Perl module
+    version number. It does not attempt to guess what the original version
+    number author intended, it simply increments in the smallest possible
+    fashion. Decimals are incremented like an odometer. Dotted decimals are
+    incremented piecewise and presented in a standardized way.
+
+    If more complex version manipulation is necessary, you may wish to
+    consider Perl::Version.
+
+USAGE
+    This module uses Sub::Exporter for optional exporting. Nothing is
+    exported by default.
+
+  "next_version"
+       my $new_version = next_version( $old_version );
+
+    Given a string, this function make the smallest logical increment and
+    returns it. The input string is very minimally checked that it resembles
+    a version number. Given "undef", the function returns 0.
+
+    Decimal versions are incremented like an odometer, preserving the
+    original number of decimal places. If an underscore is present
+    (indicating an "alpha" version), its relative position is preserved.
+    Examples:
+
+       0.001    ->   0.002
+       0.999    ->   1.000
+       0.1229   ->   0.1230
+       0.12_34  ->   0.12_35
+       0.12_99  ->   0.13_00
+
+    Dotted-decimal versions have the least significant element incremented
+    by one. If the result exceeds 999, the element resets to 0 and the next
+    most significant element is incremented, and so on. Any leading zero
+    padding is removed. Examples:
+
+      v1.2.3     ->  v1.2.4
+      v1.2.999   ->  v1.3.0
+      v1.999.999 ->  v2.0.0
+      v1.2.3_4   ->  v1.2.3_5
+      v1.2.3_999 ->  v1.2.4_0
+
+SEE ALSO
+    *   Perl::Version
+
+AUTHOR
+      David Golden <dagolden@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is Copyright (c) 2010 by David Golden.
+
+    This is free software, licensed under:
+
+      The Apache License, Version 2.0, January 2004
+

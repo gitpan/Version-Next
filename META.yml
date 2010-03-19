@@ -1,0 +1,32 @@
+---
+abstract: 'increment module version numbers simply and correctly'
+author:
+  - 'David Golden <dagolden@cpan.org>'
+build_requires: {}
+configure_requires:
+  ExtUtils::MakeMaker: 6.11
+generated_by: 'Dist::Zilla version 1.100711'
+license: apache
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Version-Next
+no_index:
+  directory:
+    - t
+    - xt
+    - examples
+provides:
+  Version::Next:
+    file: lib/Version/Next.pm
+    version: 0.001
+requires:
+  Carp: 0
+  File::Find: 0
+  File::Temp: 0
+  Sub::Exporter: 0
+  Test::Exception: 0.29
+  Test::More: 0.88
+resources:
+  repository: http://github.com/dagolden/version-next
+version: 0.001

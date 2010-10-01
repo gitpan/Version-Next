@@ -2,10 +2,15 @@
 abstract: 'increment module version numbers simply and correctly'
 author:
   - 'David Golden <dagolden@cpan.org>'
-build_requires: {}
+build_requires:
+  File::Find: 0
+  File::Temp: 0
+  Test::Exception: 0.29
+  Test::More: 0.88
 configure_requires:
-  ExtUtils::MakeMaker: 6.11
-generated_by: 'Dist::Zilla version 1.100711'
+  ExtUtils::MakeMaker: 6.31
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.101612, CPAN::Meta::Converter version 2.102400'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,17 +21,15 @@ no_index:
     - t
     - xt
     - examples
+    - corpus
 provides:
   Version::Next:
     file: lib/Version/Next.pm
-    version: 0.001
+    version: 0.002
 requires:
   Carp: 0
-  File::Find: 0
-  File::Temp: 0
   Sub::Exporter: 0
-  Test::Exception: 0.29
-  Test::More: 0.88
+  perl: 5.006
 resources:
   repository: http://github.com/dagolden/version-next
-version: 0.001
+version: 0.002

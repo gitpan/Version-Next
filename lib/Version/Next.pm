@@ -1,21 +1,23 @@
-# 
+#
 # This file is part of Version-Next
-# 
+#
 # This software is Copyright (c) 2010 by David Golden.
-# 
+#
 # This is free software, licensed under:
-# 
+#
 #   The Apache License, Version 2.0, January 2004
-# 
+#
 use strict;
 use warnings;
 package Version::Next;
-our $VERSION = '0.001';
+BEGIN {
+  $Version::Next::VERSION = '0.002';
+}
 # ABSTRACT: increment module version numbers simply and correctly
 
 # Dependencies
 # use version 0.81 (); # XXX not out yet
-use Carp 0 ();
+use Carp ();
 
 # Exporting
 use Sub::Exporter 0 ( -setup => { exports => [ 'next_version' ] } );
@@ -85,7 +87,7 @@ Version::Next - increment module version numbers simply and correctly
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -150,7 +152,7 @@ L<Perl::Version>
 
 =head1 AUTHOR
 
-  David Golden <dagolden@cpan.org>
+David Golden <dagolden@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

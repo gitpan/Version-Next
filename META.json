@@ -4,12 +4,12 @@
       "David Golden <dagolden@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.101612, CPAN::Meta::Converter version 2.102400",
+   "generated_by" : "Dist::Zilla version 5.013, CPAN::Meta::Converter version 2.140630",
    "license" : [
       "apache_2_0"
    ],
    "meta-spec" : {
-      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "url" : "https://metacpan.org/pod/CPAN::Meta::Spec",
       "version" : "2"
    },
    "name" : "Version-Next",
@@ -19,42 +19,78 @@
          "xt",
          "examples",
          "corpus"
+      ],
+      "package" : [
+         "DB"
       ]
    },
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31"
+            "ExtUtils::MakeMaker" : "6.17"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Dist::Zilla" : "5.013",
+            "Dist::Zilla::PluginBundle::DAGOLDEN" : "0.060",
+            "File::Spec" : "0",
+            "File::Temp" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
+            "Pod::Coverage::TrustPod" : "0",
+            "Test::CPAN::Meta" : "0",
+            "Test::More" : "0",
+            "Test::Pod" : "1.41",
+            "Test::Pod::Coverage" : "1.08"
          }
       },
       "runtime" : {
          "requires" : {
-            "Carp" : 0,
-            "Sub::Exporter" : 0,
-            "perl" : "5.006"
+            "Carp" : "0",
+            "Sub::Exporter" : "0",
+            "perl" : "5.006",
+            "strict" : "0",
+            "warnings" : "0"
          }
       },
       "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "0",
+            "CPAN::Meta::Requirements" : "2.120900"
+         },
          "requires" : {
-            "File::Find" : 0,
-            "File::Temp" : 0,
+            "ExtUtils::MakeMaker" : "0",
+            "File::Spec::Functions" : "0",
+            "List::Util" : "0",
             "Test::Exception" : "0.29",
-            "Test::More" : "0.88"
+            "Test::More" : "0.88",
+            "version" : "0"
          }
       }
    },
    "provides" : {
       "Version::Next" : {
          "file" : "lib/Version/Next.pm",
-         "version" : "0.002"
+         "version" : "0.003"
       }
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/dagolden/Version-Next/issues"
+      },
+      "homepage" : "https://github.com/dagolden/Version-Next",
       "repository" : {
-         "url" : "http://github.com/dagolden/version-next"
+         "type" : "git",
+         "url" : "https://github.com/dagolden/Version-Next.git",
+         "web" : "https://github.com/dagolden/Version-Next"
       }
    },
-   "version" : "0.002"
+   "version" : "0.003",
+   "x_authority" : "cpan:DAGOLDEN",
+   "x_contributors" : [
+      "Grzegorz Rożniecki <xaerxess@gmail.com>"
+   ]
 }
 

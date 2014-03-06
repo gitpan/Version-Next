@@ -1,85 +1,77 @@
-#
-# This file is part of Version-Next
-#
-# This software is Copyright (c) 2010 by David Golden.
-#
-# This is free software, licensed under:
-#
-#   The Apache License, Version 2.0, January 2004
-#
 use strict;
 use warnings;
+
 package Version::Next;
-BEGIN {
-  $Version::Next::VERSION = '0.002';
-}
 # ABSTRACT: increment module version numbers simply and correctly
+our $VERSION = '0.003'; # VERSION
 
 # Dependencies
 # use version 0.81 (); # XXX not out yet
 use Carp ();
 
 # Exporting
-use Sub::Exporter 0 ( -setup => { exports => [ 'next_version' ] } );
+use Sub::Exporter 0 ( -setup => { exports => ['next_version'] } );
 
 sub next_version {
-  my $version = shift;
-  return 0 unless defined $version;
+    my $version = shift;
+    return 0 unless defined $version;
 
-  # XXX when next version.pm comes out, use version::is_lax
-  Carp::croak( "Doesn't look like a version number: '$version'" )
-    unless $version =~ m{\Av?[0-9._]+\z};
+    # XXX when next version.pm comes out, use version::is_lax
+    Carp::croak("Doesn't look like a version number: '$version'")
+      unless $version =~ m{\Av?[0-9._]+\z};
 
-  my $new_ver;
-  my $num_dots =()= $version =~ /(\.)/g;
-  my $has_v = $version =~ /^v/;
-  my $is_alpha = $version =~ /\A[^_]+_\d+\z/;
+    my $new_ver;
+    my $num_dots =()= $version =~ /(\.)/g;
+    my $has_v    = $version =~ /^v/;
+    my $is_alpha = $version =~ /\A[^_]+_\d+\z/;
 
-  if ( $has_v || $num_dots > 1 ) { # vstring
-    $version =~ s{^v}{} if $has_v;
-    my @parts = split /\./, $version;
-    if ( $is_alpha ) { # vstring with alpha
-      push @parts, split /_/, pop @parts;
+    if ( $has_v || $num_dots > 1 ) { # vstring
+        $version =~ s{^v}{} if $has_v;
+        my @parts = split /\./, $version;
+        if ($is_alpha) {             # vstring with alpha
+            push @parts, split /_/, pop @parts;
+        }
+        my @new_ver;
+        while (@parts) {
+            my $p = pop @parts;
+            if ( $p < 999 || !@parts ) {
+                unshift @new_ver, $p + 1;
+                last;
+            }
+            else {
+                unshift @new_ver, 0;
+            }
+        }
+        $new_ver = $has_v ? 'v' : '';
+        $new_ver .= join( ".", map { 0+ $_ } @parts, @new_ver );
+        if ($is_alpha) {
+            $new_ver =~ s{\A(.*)\.(\d+)}{$1_$2};
+        }
     }
-    my @new_ver;
-    while ( @parts ) {
-      my $p = pop @parts;
-      if ( $p < 999 || ! @parts ) {
-        unshift @new_ver, $p+1;
-        last;
-      }
-      else {
-        unshift @new_ver, 0;
-      }
+    else { # decimal fraction
+        my $alpha_neg_offset;
+        if ($is_alpha) {
+            $alpha_neg_offset = index( $version, "_" ) + 1 - length($version);
+            $version =~ s{_}{};
+        }
+        my ($fraction) = $version =~ m{\.(\d+)$};
+        my $n = defined $fraction ? length($fraction) : 0;
+        $new_ver = sprintf( "%.${n}f", $version + ( 10**-$n ) );
+        if ($is_alpha) {
+            substr( $new_ver, $alpha_neg_offset, 0, "_" );
+        }
     }
-    $new_ver = $has_v ? 'v' : '';
-    $new_ver .= join( ".", map { 0+$_ } @parts, @new_ver );
-    if ( $is_alpha ) {
-      $new_ver =~ s{\A(.*)\.(\d+)}{$1_$2};
-    }
-  }
-  else { # decimal fraction
-    my $alpha_neg_offset;
-    if ( $is_alpha ) {
-      $alpha_neg_offset = index( $version, "_" ) +1 - length( $version );
-      $version =~ s{_}{};
-    }
-    my ($fraction) = $version =~ m{\.(\d+)$};
-    my $n = defined $fraction ? length($fraction) : 0;
-    $new_ver = sprintf("%.${n}f",$version + (10**-$n));
-    if ( $is_alpha ) {
-      substr($new_ver, $alpha_neg_offset, 0, "_");
-    }
-  }
-  return $new_ver;
+    return $new_ver;
 
 }
 
 1;
 
-
+__END__
 
 =pod
+
+=encoding UTF-8
 
 =head1 NAME
 
@@ -87,11 +79,11 @@ Version::Next - increment module version numbers simply and correctly
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
-   use Version::Next;
+   use Version::Next qw/next_version/;
  
    my $new_version = next_version( $old_version );
 
@@ -150,20 +142,39 @@ L<Perl::Version>
 
 =back
 
+=for :stopwords cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff irc mailto metadata placeholders metacpan
+
+=head1 SUPPORT
+
+=head2 Bugs / Feature Requests
+
+Please report any bugs or feature requests through the issue tracker
+at L<https://github.com/dagolden/Version-Next/issues>.
+You will be notified automatically of any progress on your issue.
+
+=head2 Source Code
+
+This is open source software.  The code repository is available for
+public review and contribution under the terms of the license.
+
+L<https://github.com/dagolden/Version-Next>
+
+  git clone https://github.com/dagolden/Version-Next.git
+
 =head1 AUTHOR
 
 David Golden <dagolden@cpan.org>
 
+=head1 CONTRIBUTOR
+
+Grzegorz Rożniecki <xaerxess@gmail.com>
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by David Golden.
+This software is Copyright (c) 2014 by David Golden.
 
 This is free software, licensed under:
 
   The Apache License, Version 2.0, January 2004
 
 =cut
-
-
-__END__
-

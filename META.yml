@@ -3,18 +3,20 @@ abstract: 'increment module version numbers simply and correctly'
 author:
   - 'David Golden <dagolden@cpan.org>'
 build_requires:
-  File::Find: 0
-  File::Temp: 0
-  Test::Exception: 0.29
-  Test::More: 0.88
+  ExtUtils::MakeMaker: '0'
+  File::Spec::Functions: '0'
+  List::Util: '0'
+  Test::Exception: '0.29'
+  Test::More: '0.88'
+  version: '0'
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: '6.17'
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.101612, CPAN::Meta::Converter version 2.102400'
+generated_by: 'Dist::Zilla version 5.013, CPAN::Meta::Converter version 2.140630'
 license: apache
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Version-Next
 no_index:
   directory:
@@ -22,14 +24,23 @@ no_index:
     - xt
     - examples
     - corpus
+  package:
+    - DB
 provides:
   Version::Next:
     file: lib/Version/Next.pm
-    version: 0.002
+    version: '0.003'
 requires:
-  Carp: 0
-  Sub::Exporter: 0
-  perl: 5.006
+  Carp: '0'
+  Sub::Exporter: '0'
+  perl: '5.006'
+  strict: '0'
+  warnings: '0'
 resources:
-  repository: http://github.com/dagolden/version-next
-version: 0.002
+  bugtracker: https://github.com/dagolden/Version-Next/issues
+  homepage: https://github.com/dagolden/Version-Next
+  repository: https://github.com/dagolden/Version-Next.git
+version: '0.003'
+x_authority: cpan:DAGOLDEN
+x_contributors:
+  - 'Grzegorz Rożniecki <xaerxess@gmail.com>'

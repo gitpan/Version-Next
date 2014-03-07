@@ -51,6 +51,7 @@
             "Sub::Exporter" : "0",
             "perl" : "5.006",
             "strict" : "0",
+            "version" : "0.81",
             "warnings" : "0"
          }
       },
@@ -64,15 +65,14 @@
             "File::Spec::Functions" : "0",
             "List::Util" : "0",
             "Test::Exception" : "0.29",
-            "Test::More" : "0.88",
-            "version" : "0"
+            "Test::More" : "0.88"
          }
       }
    },
    "provides" : {
       "Version::Next" : {
          "file" : "lib/Version/Next.pm",
-         "version" : "0.003"
+         "version" : "0.004"
       }
    },
    "release_status" : "stable",
@@ -87,7 +87,7 @@
          "web" : "https://github.com/dagolden/Version-Next"
       }
    },
-   "version" : "0.003",
+   "version" : "0.004",
    "x_authority" : "cpan:DAGOLDEN",
    "x_contributors" : [
       "Grzegorz Rożniecki <xaerxess@gmail.com>"

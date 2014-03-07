@@ -69,6 +69,7 @@ my $static_prereqs = do { my $x = {
                                       'Sub::Exporter' => '0',
                                       'perl' => '5.006',
                                       'strict' => '0',
+                                      'version' => '0.81',
                                       'warnings' => '0'
                                     }
                     },
@@ -82,8 +83,7 @@ my $static_prereqs = do { my $x = {
                                    'File::Spec::Functions' => '0',
                                    'List::Util' => '0',
                                    'Test::Exception' => '0.29',
-                                   'Test::More' => '0.88',
-                                   'version' => '0'
+                                   'Test::More' => '0.88'
                                  }
                  }
      };

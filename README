@@ -2,7 +2,7 @@ NAME
     Version::Next - increment module version numbers simply and correctly
 
 VERSION
-    version 0.003
+    version 0.004
 
 SYNOPSIS
        use Version::Next qw/next_version/;
@@ -27,8 +27,11 @@ USAGE
        my $new_version = next_version( $old_version );
 
     Given a string, this function make the smallest logical increment and
-    returns it. The input string is very minimally checked that it resembles
-    a version number. Given "undef", the function returns 0.
+    returns it. The input string must be a "lax" version numbers as defined
+    by the version module. The literal string "undef" is treated as "0" and
+    incremented to "1". Leading or trailing periods have a "0" prepended or
+    appended as appropriate before the version is incremented. For legacy
+    reasons, given no argument, the function returns "0".
 
     Decimal versions are incremented like an odometer, preserving the
     original number of decimal places. If an underscore is present

@@ -24,6 +24,7 @@ my %WriteMakefileArgs = (
     "Carp" => 0,
     "Sub::Exporter" => 0,
     "strict" => 0,
+    "version" => "0.81",
     "warnings" => 0
   },
   "TEST_REQUIRES" => {
@@ -31,10 +32,9 @@ my %WriteMakefileArgs = (
     "File::Spec::Functions" => 0,
     "List::Util" => 0,
     "Test::Exception" => "0.29",
-    "Test::More" => "0.88",
-    "version" => 0
+    "Test::More" => "0.88"
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -50,7 +50,7 @@ my %FallbackPrereqs = (
   "Test::Exception" => "0.29",
   "Test::More" => "0.88",
   "strict" => 0,
-  "version" => 0,
+  "version" => "0.81",
   "warnings" => 0
 );
 
